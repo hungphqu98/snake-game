@@ -4,6 +4,8 @@ import { outsideGrid } from './grid.js'
 let lastRenderTime = 0
 let gameOver = 0;
 let modal = document.getElementById('modal')
+let gameOverModal = document.getElementById('gameOver')
+let restartBtn = document.getElementById('again')
 let easy = document.getElementById('easy')
 let normal = document.getElementById('normal')
 let hard = document.getElementById('hard')
@@ -41,10 +43,10 @@ function chooseDifficulty(difficulty) {
 
 function main(currentTime) {
     if (gameOver) {
-        if (confirm('You lost. Press OK to restart')) {
+        gameOverModal.style.display = "block"
+        restartBtn.onclick = function() {
             location.reload()
         }
-        return
     }
     window.requestAnimationFrame(main)
     const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000
